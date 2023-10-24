@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q5</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" >
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="reddit">
+            <lottie-player src="43622-reddit.json" background="transparent"  speed="1"  style="width: 50px; height: 50px;" loop  autoplay></lottie-player>
+            <h1> Reddit</h1>
+        </div>
+        
+        <div class="search">
+			<form>
+				<input id="searchText" type="text" placeholder="Search...">
+                <input id="mybutton" value="Submit" type="button" onclick="query()">
+
+			</form>
+		</div>
+    </header>
+    <div id="loc"></div>
+    <script>
+ 
+        function query(){
+            let queryword = $("#searchText").val();
+            let newurl = "https://api.reddit.com/search?q=" + queryword + "&type=user";
+            $.ajax({
+	        url: newurl,
+	        success: function(data){
+		        let output = "<table border = '1'><tr><th>Name</th><th>Accepted_followers</th><th>Subscribers</th><th>Id</th><th>Icon Image</th>";
+                    const users = data.data.children;
+                    const topUsers = users.sort((a, b) => b.data.total_karma - a.data.total_karma).slice(0, 10);
+                    $(data.data.children).each(function(index,field){
+                            output += "<tr>";
+                            output += "<td>" + field.data.name + "</td>";
+                            if(field.data.accept_followers){
+                                output += "<td>" + field.data.accept_followers + "</td>";
+                            }
+                            else{
+                                output += "<td></td>"
+                            }
+                            if(field.data.subreddit){
+                                output += "<td>" + field.data.subreddit.subscribers + "</td>";
+                            }
+                            else{
+                                output += "<td></td>"
+                            }
+                            if(field.data.id){
+                                output += "<td>" + field.data.id + "</td>";
+                            }
+                            else{
+                                output += "<td></td>"
+                            }
+                            if(field.data.icon_img){
+                                let img = "<img src='" + field.data.icon_img + "'>"
+                                output += "<td>" + img + "</td>";           
+                            }
+                            else{
+                                output += "<td></td>"
+                            }
+                    })
+                output += "</table>"
+                $("#loc").html(output); 
+		    },
+	        error: function(e){ 
+		        alert('Error!');
+		        console.log(e);
+	        }
+        });   
+
+        }
+           
+    </script>    
+</body>
+</html>

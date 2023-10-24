@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1A</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" >
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <div class="reddit">
+            <lottie-player src="43622-reddit.json" background="transparent"  speed="1"  style="width: 50px; height: 50px;" loop  autoplay></lottie-player>
+            <h1> Reddit</h1>
+        </div>
+        
+        <div class="search">
+			<form>
+				<input id="searchText" type="text" placeholder="Search...">
+                <input id="mybutton" value="Submit" type="button" onclick="query()">
+
+			</form>
+		</div>
+    </header>
+    <div id="loc"></div>
+    <script>
+
+  
+        function query(){
+            let queryword = $("#searchText").val();
+            let newurl = "https://www.reddit.com/subreddits/search.json?q=" + queryword + "&limit=100";
+            $.ajax({
+	        url: newurl,
+	        success: function(data){
+		        let output = "<table border = '1'><tr><th>Title</th><th>Icon</th><th>Description</th><th>Date</th><th>URL</th><th>Subscribers</th><th>Description</th>";
+                    data.data.children.sort((a, b) => a.data.title.trim().localeCompare(b.data.title.trim()));
+                    $(data.data.children).each(function(index,field){
+                            output += "<tr>";
+                            output += "<td>" + field.data.title + "</td>";
+                            let img = "<img src='" + field.data.icon_img + "'>"
+                            output += "<td>" + img + "</td>";
+                            output += "<td>" + field.data.public_description + "</td>";
+                            var date = new Date(field.data.created_utc* 1000).toLocaleString();
+                            output += "<td>" + date + "</td>";
+                            var newurl = "<a href = 'https://reddit.com" + field.data.url + "'>Click here for URL</a>"
+                            output += "<td>" + newurl + "</td>";
+                            output += "<td>" + field.data.subscribers + "</td>";
+                            output += "<td>" + field.data.description + "</td>";
+                            output += "</tr>";
+                    })
+                output += "</table>"
+                $("#loc").html(output); 
+		    },
+	        error: function(e){ 
+		        alert('Error!');
+		        console.log(e);
+	        }
+        });   
+
+        }
+           
+    </script>    
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q10</title>
+</head>
+<body>
+    <form id="form1">
+        <input type="text" placeholder="Enter Order Date" name="od">
+        <input type="button" value="Search" id="searchbtn" onclick="display()">
+    </form> <br>
+    <div id="demo">Hi</div>
+    <script>
+        function display() {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("get", "Q10.xml", false);
+            xmlhttp.send();
+            var xmlDoc = xmlhttp.responseXML;
+            var orderdate = document.getElementById("form1").od.value;
+            xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xmlDoc);
+            // Setting the parameter value to the entered form field value
+            xsltProcessor.setParameter(null, "Param", orderdate);
+            
+            const fragment = xsltProcessor.transformToFragment(xmlDoc, document);
+            
+            document.getElementById("demo").innerHTML = xsltProcessor.getParameter(null, "Param");
+           
+        }
+        
+
+    </script>
+    
+</body>
+</html>

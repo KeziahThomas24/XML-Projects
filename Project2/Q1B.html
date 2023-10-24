@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q1B</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="Enter search query" id="val">
+        <input type="button" value="Search" id="btn" onclick="query()"> 
+    </form>
+    <p id="loc"></p>
+    <script>
+        function compare_to_sort(x,y){
+            if (x.data.title < y.data.title)
+                return -1;
+            if (x.data.title> y.data.title)
+                return 1;
+            return 0;
+        }
+
+        function jsonToXml(json) {
+            var xml = '';
+            for (var prop in json) {
+                xml += "<" + prop + ">";
+                if (typeof json[prop] == "object") {
+                    xml += jsonToXml(new Object(json[prop]));
+                } 
+                else {
+                    xml += json[prop];
+                }   
+                xml += "</" + prop + ">";
+            }
+            return xml;
+}
+
+
+        function stringToXML(str) {
+            var parser = new DOMParser();
+            var xml = parser.parseFromString(str, "application/xml");
+            return xml;
+        }
+
+  
+        function query(){
+            let queryword = $("#val").val();
+            let newurl = "https://www.reddit.com/subreddits/search.json?q=" + queryword + "&limit=100";
+            fetch(newurl)
+            .then(function(result){
+                return(result.json());
+
+            })
+            .then(function(data){
+                const data1 = jsonToXml(data);
+                console.log(data1);
+                const data2 = stringToXML(data1);
+                console.log(data2);
+                
+            })
+            .catch(err => console.error(err));
+        }
+           
+    </script>    
+</body>
+</html>

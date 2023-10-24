@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- /*****************************************************************************
+* ITC5202 – Project1
+* I declare that this assignment is my own work in accordance with Humber Academic
+* Policy.
+* No part of this assignment has been copied manually or electronically from any other
+* source (including web sites) or distributed to other students.
+*
+* Name: Keziah Thomas Student ID: N01541155 Date: 28/02/23
+*
+*
+*****************************************************************************/ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q6</title>
+</head>
+<body>
+    <!-- Div to display the output -->
+    <div id="demo"></div>
+    <script>
+        // Creating and initializing the XMLHttpRequest object to interact with server
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("get", "Q6.xml", false);
+        xmlhttp.send();
+        //Storing the response as XML document retrieved by the request
+        var xmlDoc = xmlhttp.responseXML;
+        x = xmlDoc.getElementsByTagName("PurchaseOrder");
+        z = xmlDoc.getElementsByTagName("Product");
+        var output="<table border='1'>";
+        for ( i = 0; i < x.length; i ++) {
+            output += "<tr>";
+            // Accessing items under each Purchase Order
+            y = x[i].getElementsByTagName("Item");   
+            for ( j = 0; j < y.length; j++) {
+                // Accessing the child nodes under the Item element
+                for ( k = 0; k < y[j].childNodes.length; k++) {
+                    // Checking if the Status is not Shipped and extracting the Item info
+                    if (y[j].childNodes[k].nodeName == 'Status' && y[j].childNodes[k].innerHTML != ' Shipped ') { 
+                        output += "<td>" + x[i].getAttribute("PurchaseOrderNumber") + "</td>";
+                        output += "<td>" + x[i].getAttribute("OrderDate") + "</td>";
+                        output += "<td>" + y[j].getAttribute("PartNumber") + "</td>";
+                        var pn = y[j].getAttribute("PartNumber");
+                        // Mapping the Item PartNumber with the Product Name
+                        for ( a = 0; a < z.length; a++) {
+                            if (z[a].getAttribute("PartNumber") == pn) {
+                                output += "<td>" + z[a].getElementsByTagName("ProductName")[0].innerHTML + "</td>";
+                            }
+                        }
+                        
+                        output += "<td>" + y[j].getElementsByTagName("Quantity")[0].innerHTML + "</td>";
+                        output += "<td>" + y[j].getElementsByTagName("Status")[0].innerHTML + "</td>";
+
+                        // Checking if the optional Comment and ShipDate nodes exist
+                        if (y[j].childNodes[k].nodeName == 'Comment') {
+                            output += "<td>" + y[j].getElementsByTagName("Comment")[0].innerHTML + "</td>";
+                        }
+                   
+                        if (y[j].childNodes[k].nodeName == 'ShipDate') {
+                            output += "<td>" + y[j].getElementsByTagName("ShipDate")[0].innerHTML + "</td>";
+                        }
+
+                    }
+                }
+            }
+            
+            output += "</tr>";
+            
+        }
+        output += "</table>";  
+        
+        document.getElementById("demo").innerHTML = output;
+
+    </script>
+    
+</body>
+</html>

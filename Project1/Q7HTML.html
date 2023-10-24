@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- /*****************************************************************************
+* ITC5202 – Project1
+* I declare that this assignment is my own work in accordance with Humber Academic
+* Policy.
+* No part of this assignment has been copied manually or electronically from any other
+* source (including web sites) or distributed to other students.
+*
+* Name: Saeeduddin Mohammed Student ID: N01547224 Date: 28/02/23
+*
+*
+*****************************************************************************/ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q7</title>
+</head>
+<body>
+    <!-- Creating the form -->
+    <form id="form1">
+        <input type="text" placeholder="Enter Order Date" name="od">
+        <input type="button" value="Search" id="searchbtn" onclick="display()">
+    </form> <br>
+    <!-- Div element to display the output -->
+    <div id="demo"></div>
+    <script>
+        // display function that is invoked on button click
+        function display() {
+            // Creating the XHR object
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("get", "Q7.xml", false);
+            xmlhttp.send();
+            // Storing the response as XML document
+            var xmlDoc = xmlhttp.responseXML;
+            // Storing the user entered OrderDate
+            var orderdate = document.getElementById("form1").od.value;
+            x = xmlDoc.getElementsByTagName("PurchaseOrder");
+            z = xmlDoc.getElementsByTagName("Product");
+            var output="<table border='2'>";
+            for ( i = 0; i < x.length; i++) {
+                // Conditon to check if the Purchase OrderDate includes the user entered date
+                if ((x[i].getAttribute("OrderDate")).includes(orderdate)) {
+                    // Accessing the Shipping Address elements
+                    a = x[i].getElementsByTagName("Address")[0];
+                    output += "<tr style = 'background-color: beige;'><td colspan = '3'>Name</td><td>Country + Zip</td></tr>";
+                    output += "<tr style = 'background-color: #92ffff;'><td colspan = '3'>" + a.getElementsByTagName("Name")[0].innerHTML + "</td>";
+                    output += "<td>" + a.getElementsByTagName("Country")[0].innerHTML + ' ' + a.getElementsByTagName("Zip")[0].innerHTML + "</td></tr>";
+                    y = x[i].getElementsByTagName("Item");  
+                    for ( j = 0; j < y.length; j++) {
+                        output += "<tr style = 'background-color: beige;'><td>PartNumber</td><td>ProductName</td><td>Quantity</td><td>Status</td></tr>";
+                        output += "<tr style = 'background-color: #92ffff;'><td>" + y[j].getAttribute("PartNumber") + "</td>";
+                        var pn = y[j].getAttribute("PartNumber");
+                        for ( a = 0; a < z.length; a++) {
+                            // Mapping the Item PartNumber to the ProductName
+                            if (z[a].getAttribute("PartNumber") == pn) {
+                                output += "<td>" + z[a].getElementsByTagName("ProductName")[0].innerHTML + "</td>";
+                            }
+                        }
+                        output += "<td>" + y[j].getElementsByTagName("Quantity")[0].innerHTML + "</td>";
+                        output += "<td>" + y[j].getElementsByTagName("Status")[0].innerHTML + "</td></tr>";
+                    
+                    }
+                }
+            }
+            output += "</table>";  
+            
+            document.getElementById("demo").innerHTML = output;
+        }
+        
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- 
+    ITC5202 Project 2  -- Prepared by: Professor : Shahdad
+    The objective of this sample code to get students familiar with reddit API prior to start the project
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- step 1: jQuery CDN to the project-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+    <p id="locs"></p>
+    <script>
+        $.getJSON("https://www.reddit.com/search.json?q=ajax", function(data) { 
+            console.log(data);
+            $.each(data.data.children, function(i,item){
+                console.log(item);
+                 $("#locs").append(item.data.title,"<br>");
+            });
+});
+    </script>
+</body>
+</html>

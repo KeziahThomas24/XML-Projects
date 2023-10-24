@@ -1,0 +1,46 @@
+<!-- /*****************************************************************************
+* ITC5202 – Project1
+* I declare that this assignment is my own work in accordance with Humber Academic
+* Policy.
+* No part of this assignment has been copied manually or electronically from any other
+* source (including web sites) or distributed to other students.
+*
+* Name: Keziah Thomas Student ID: N01541155 Date: 28/02/23
+*
+*
+*****************************************************************************/ -->
+
+<!-- ELEMENT DECLARATIONS -->
+<!ELEMENT dataset (PurchaseOrders+, Products)>
+<!ELEMENT PurchaseOrders (PurchaseOrder+)>
+<!ELEMENT PurchaseOrder (Address+, DeliveryNotes?, Items)>
+<!ELEMENT Address (Name, Street, City, State, Zip, Country)>
+<!ELEMENT Items (Item+)>
+<!ELEMENT Item (Quantity, Comment?, ShipDate?, Status)>
+
+<!ELEMENT Products (Product+)>
+<!ELEMENT Product (ProductName, Price)>
+
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Street (#PCDATA)>
+<!ELEMENT City (#PCDATA)>
+<!ELEMENT State (#PCDATA)>
+<!ELEMENT Zip (#PCDATA)>
+<!ELEMENT Country (#PCDATA)>
+<!ELEMENT DeliveryNotes (#PCDATA)>
+<!ELEMENT Quantity (#PCDATA)>
+<!ELEMENT Comment (#PCDATA)>
+<!ELEMENT ShipDate (#PCDATA)>
+<!ELEMENT Status (#PCDATA)>
+<!ELEMENT ProductName (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>
+
+<!-- ATTRIBUTE DECLARATIONS -->
+
+<!ATTLIST dataset xmlns CDATA "http://www.master-works.com">
+<!ATTLIST PurchaseOrder PurchaseOrderNumber CDATA #REQUIRED
+                        OrderDate CDATA #REQUIRED>
+<!ATTLIST Item PartNumber CDATA #REQUIRED>
+<!ATTLIST Address Type CDATA #REQUIRED>
+<!ATTLIST Product PartNumber CDATA #REQUIRED>
+<!ATTLIST Price curr CDATA #REQUIRED>

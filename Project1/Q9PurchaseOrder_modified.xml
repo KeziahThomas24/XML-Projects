@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- /*****************************************************************************
+* ITC5202 – Project1
+* I declare that this assignment is my own work in accordance with Humber Academic
+* Policy.
+* No part of this assignment has been copied manually or electronically from any other
+* source (including web sites) or distributed to other students.
+*
+* Name: Saeeduddin Mohammed Student ID: N01547224 Date: 28/02/23
+*
+*
+*****************************************************************************/ -->
+<?xml-stylesheet type="text/xsl" href="Q9XSL.xsl"?>
+<dataset xmlns="http://www.master-works.com">
+<!-- Purchase-Order Data -->
+  <PurchaseOrders>
+    <PurchaseOrder PurchaseOrderNumber="99503">
+      <OrderDate>2021-05-20</OrderDate>
+      <Address Type="Shipping">
+        <Name>Ellen Adams</Name>
+        <Street>123 Maple Street</Street>
+        <City>Mill Valley</City>
+        <State>CA</State>
+        <Zip>10999</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Tai Yee</Name>
+        <Street>8 Oak Avenue</Street>
+        <City>Old Town</City>
+        <State>PA</State>
+        <Zip>95819</Zip>
+        <Country>USA</Country>
+      </Address>
+      <DeliveryNotes>Please leave packages in shed by driveway.</DeliveryNotes>
+      <Items>
+        <Item PartNumber="872-AA">
+          <Quantity>1</Quantity>
+          <Comment>Confirm this is electric</Comment>
+          <Status> Shipped </Status>
+        </Item>
+        <Item PartNumber="926-AA">
+          <Quantity>2</Quantity>
+          <ShipDate>2021-05-21</ShipDate>
+          <Status> Shipped </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+    <PurchaseOrder PurchaseOrderNumber="99505">
+      <OrderDate>2021-04-22</OrderDate>
+      <Address Type="Shipping">
+        <Name>Cristian Osorio</Name>
+        <Street>456 Main Street</Street>
+        <City>Buffalo</City>
+        <State>NY</State>
+        <Zip>98112</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Cristian Osorio</Name>
+        <Street>456 Main Street</Street>
+        <City>Buffalo</City>
+        <State>NY</State>
+        <Zip>98112</Zip>
+        <Country>USA</Country>
+      </Address>
+      <DeliveryNotes>Please notify me before shipping.</DeliveryNotes>
+      <Items>
+        <Item PartNumber="456-NM">
+          <Quantity>1</Quantity>
+          <Status> Returned </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+    <PurchaseOrder PurchaseOrderNumber="99504">
+      <OrderDate>2021-03-22</OrderDate>
+      <Address Type="Shipping">
+        <Name>Jessica Arnold</Name>
+        <Street>4055 Madison Ave</Street>
+        <City>Seattle</City>
+        <State>WA</State>
+        <Zip>98112</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Jessica Arnold</Name>
+        <Street>4055 Madison Ave</Street>
+        <City>Buffalo</City>
+        <State>NY</State>
+        <Zip>98112</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Items>
+        <Item PartNumber="898-AZ">
+          <Quantity>1</Quantity>
+          <Status> Shipped </Status>
+        </Item>
+        <Item PartNumber="898-AM">
+          <Quantity>1</Quantity>
+          <Status> Shipped </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+
+    <PurchaseOrder PurchaseOrderNumber="99510">
+      <OrderDate>2021-06-12</OrderDate>
+      <Address Type="Shipping">
+        <Name>Sara Coner</Name>
+        <Street>155 Dandus Ave</Street>
+        <City>Toronto</City>
+        <State>ON</State>
+        <Zip>M3J6P9</Zip>
+        <Country>Canada</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Sara Coner</Name>
+        <Street>155 Dandus Ave</Street>
+        <City>Toronto</City>
+        <State>ON</State>
+        <Zip>M3J6P9</Zip>
+        <Country>Canada</Country>
+      </Address>
+      <Items>
+        <Item PartNumber="505-AZ">
+          <Quantity>2</Quantity>
+          <Status> In Shipping </Status>
+        </Item>
+        <Item PartNumber="303-AM">
+          <Quantity>1</Quantity>
+          <Status> In Shipping </Status>
+        </Item>
+        <Item PartNumber="304-ZP">
+          <Quantity>10</Quantity>
+          <Status> Shipped </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+
+    <PurchaseOrder PurchaseOrderNumber="99520">
+      <OrderDate>2021-06-22</OrderDate>
+      <Address Type="Shipping">
+        <Name>Scott Patker</Name>
+        <Street>2055 Yonge Street</Street>
+        <City>Toronto</City>
+        <State>ON</State>
+        <Zip>M2J6K9</Zip>
+        <Country>Canada</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Sam Patker</Name>
+        <Street>1055 Sheppard Ave E</Street>
+        <City>Toronto</City>
+        <State>ON</State>
+        <Zip>M2J4K9</Zip>
+        <Country>Canada</Country>
+      </Address>
+      <Items>
+        <Item PartNumber="303-AM">
+          <Quantity>1</Quantity>
+          <Status> Under Process </Status>
+        </Item>
+        <Item PartNumber="304-ZP">
+          <Quantity>10</Quantity>
+          <Status> Under Process </Status>
+        </Item>
+        <Item PartNumber="872-AA">
+          <Quantity>1</Quantity>
+          <Comment>Confirm this is electric</Comment>
+          <Status> Under Process </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+
+    <PurchaseOrder PurchaseOrderNumber="12345">
+      <OrderDate>2023-02-26</OrderDate>
+      <Address Type="Shipping">
+        <Name>Claire Adams</Name>
+        <Street>789 Sizzler Street</Street>
+        <City>Hill Town</City>
+        <State>CA</State>
+        <Zip>74599</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Hong Cha Yu</Name>
+        <Street>19 Yu Street</Street>
+        <City>New Town</City>
+        <State>PA</State>
+        <Zip>24627</Zip>
+        <Country>USA</Country>
+      </Address>
+      <DeliveryNotes>Please leave packages at doorstep.</DeliveryNotes>
+      <Items>
+        <Item PartNumber="456-NM">
+          <Quantity>1</Quantity>
+          <Status> In Shipping </Status>
+        </Item>
+        <Item PartNumber="898-AZ">
+          <Quantity>2</Quantity>
+          <ShipDate>2023-01-30</ShipDate>
+          <Status> Shipped </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+
+    <PurchaseOrder PurchaseOrderNumber="67890">
+      <OrderDate>2023-02-27</OrderDate>
+      <Address Type="Shipping">
+        <Name>Suzy Robbert</Name>
+        <Street>900 Kale Street</Street>
+        <City>Richmond Town</City>
+        <State>CA</State>
+        <Zip>31111</Zip>
+        <Country>USA</Country>
+      </Address>
+      <Address Type="Billing">
+        <Name>Mary Heart</Name>
+        <Street>45 Green Street</Street>
+        <City>Jakerton Valley</City>
+        <State>PA</State>
+        <Zip>42355</Zip>
+        <Country>USA</Country>
+      </Address>
+      <DeliveryNotes>Please leave packages by the car.</DeliveryNotes>
+      <Items>
+        <Item PartNumber="898-AM">
+          <Quantity>1</Quantity>
+          <Status> Returned </Status>
+        </Item>
+        <Item PartNumber="505-AZ">
+          <Quantity>2</Quantity>
+          <Status> Under Process </Status>
+        </Item>
+      </Items>
+    </PurchaseOrder>
+  </PurchaseOrders>
+  
+  <!-- Product Data -->
+  <Products>
+    <Product PartNumber="872-AA">
+      <ProductName>Lawnmower</ProductName>
+      <Price curr="USD">148.95</Price>
+    </Product>
+    <Product PartNumber="926-AA">
+      <ProductName>Baby Monitor</ProductName>
+      <Price curr="USD">39.98</Price>
+    </Product>
+    <Product PartNumber="456-NM">
+      <ProductName>Power Supply</ProductName>
+      <Price curr="USD">45.99</Price>
+    </Product>
+    <Product PartNumber="898-AZ">
+      <ProductName>Computer Keyboard</ProductName>
+      <Price curr="USD">29.99</Price>
+    </Product>
+    <Product PartNumber="898-AM">
+      <ProductName>Wireless Mouse</ProductName>
+      <Price curr="USD">14.99</Price>
+    </Product>
+    <Product PartNumber="505-AZ">
+      <ProductName>Computer Chair</ProductName>
+      <Price curr="CAD">129.99</Price>
+    </Product>
+    <Product PartNumber="303-AM">
+      <ProductName>Wireless Mouse</ProductName>
+      <Price curr="CAD">14.99</Price>
+    </Product>
+    <Product PartNumber="304-ZP">
+      <ProductName>Network Keyston</ProductName>
+      <Price curr="CAD">4.99</Price>
+    </Product>
+  </Products>
+
+</dataset>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- /*****************************************************************************
+* ITC5202 – Project1
+* I declare that this assignment is my own work in accordance with Humber Academic
+* Policy.
+* No part of this assignment has been copied manually or electronically from any other
+* source (including web sites) or distributed to other students.
+*
+* Name: Keziah Thomas Student ID: N01541155 Date: 28/02/23
+*
+*
+*****************************************************************************/ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q8</title>
+</head>
+<body>
+    <!-- Div element to display the output -->
+    <div id="demo"></div>
+    <script>
+        // Creating the XHR object
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("get", "Q8.xml", false);
+        xmlhttp.send();
+        // Storing the response as XML doc
+        var xmlDoc = xmlhttp.responseXML;
+        x = xmlDoc.getElementsByTagName("PurchaseOrder");
+        z = xmlDoc.getElementsByTagName("Product");
+        var output="<table border='2'>";
+        // for loop to iterate through the Items info in the Purchase Order
+        for ( i = 0; i < x.length; i++) {
+            output += "<tr>"
+            output += "<td>" + x[i].getAttribute("PurchaseOrderNumber") + "</td>";
+            output += "<td>" + x[i].getAttribute("OrderDate") + "</td>";
+            a = x[i].getElementsByTagName("Address")[0];
+            output += "<td>" + a.getElementsByTagName("Country")[0].innerHTML + "</td>";
+            y = x[i].getElementsByTagName("Item");  
+            // Initializing the price variables for USD and CAD currencies
+            var usdprice = 0;
+            var cadprice = 0;
+           
+            for ( j = 0; j < y.length; j++) {
+                output += "<td>" + y[j].getAttribute("PartNumber") + "</td>";
+                var pn = y[j].getAttribute("PartNumber");
+                // for loop to map the Item PartNumber to the Product price
+                for ( a = 0; a < z.length; a++) {
+                    if (z[a].getAttribute("PartNumber") == pn) {
+                        p = z[a].getElementsByTagName("Price")[0];
+                        curr = p.getAttribute("curr");
+                        // if condition to sum up the total amounts in the respective currencies
+                        if (curr == "USD") {
+                            usdprice += parseFloat(p.innerHTML);
+                        }
+                        else {
+                            cadprice += parseFloat(p.innerHTML);
+                        }
+                    }
+                }
+            
+            }
+            // Rounding the total amount values to 2 decimal places
+            if (usdprice != 0) {
+                    output += "<td>" + usdprice.toFixed(2) + " USD</td>";
+            }
+            if (cadprice != 0) {
+                    output += "<td>" + cadprice.toFixed(2) + " CAD</td>";
+            }
+            output += "</tr>"
+            
+           
+        }
+        output += "</table>";  
+            
+        document.getElementById("demo").innerHTML = output;
+
+    </script>
+    
+</body>
+</html>
